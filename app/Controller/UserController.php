@@ -24,16 +24,12 @@ class UserController extends Controller
         // var_dump($user);exit;
 
         //update user
-        $user = $userModel->update("name='wk'", 'id=2');
-        var_dump($user);exit;
-        
-
+        // $user = $userModel->update("name='wk'", 'id=2');
+        // var_dump($user);exit;
+    
         //delete user
         // $isDel = $userModel->delete(1);
         // var_dump($isDel);exit;
-
-
-        // $this->render('User', []);
     }
 
 }

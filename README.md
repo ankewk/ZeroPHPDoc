@@ -1,5 +1,5 @@
 # ZeroPHPDoc
-ZeroPHP Framework Documemt and Demon Application
+ZeroPHP PHP Framework Documemts and Demon Applications
 
 ---
 
@@ -9,6 +9,7 @@ ZeroPHP Framework Documemt and Demon Application
 
 ## Framework Method
 ```
+### Model Class
 1. C() : A Method Create new records extends Model Class
  - param [String feild, String value]
 2. R() : A Method Retrieve existing records extends Model Class
@@ -66,7 +67,92 @@ The browser opens the domain/hello page and outputs Hello ZeroPHP FrameWork! [do
 
 ## Model CRUD Demo
 
+Demo Code In app
+In routing: Domain/user page output User CRUD ZeroPHP FrameWork!
 
+```
+1. configuration routing
+The following routing is configured under the conf/route.php file:
+$route['/user'] = ['User','index'];
+Find the indexZero method under the controller of Hello to realize business logic.
+
+2. logical writing
+/app/Controller/UserController.php's indexZero () method:
+The code is as follows:
+public function indexZero()
+{
+    $userModel = new UserModel();
+    //creat user
+    $user = "'anke','27'";
+    $uid = $userModel->create($user);
+    var_dump($uid);
+
+    //retrieve user
+    $user = $userModel->retrieve('name', 'id=2');
+    var_dump($user);
+
+    //update user
+    $user = $userModel->update("name='wk'", 'id=2');
+    var_dump($user);
+
+    //delete user
+    $isDel = $userModel->delete(1);
+    var_dump($isDel);
+    exit;
+}
+
+3. data abstraction layer writing
+The create() retrieve() update()  delete() method of /app/Model/UserModel.php
+The code is as follows:
+public function __construct() 
+{
+    parent::__construct();
+    $this->table = 'user';
+    $this->feild = '`name`, `age`';
+}
+
+public function create($user)
+{
+    $this->value = $user;
+    $rs = $this->C();
+    return $rs;
+}
+
+public function retrieve($feild, $where)
+{
+    $this->feild = $feild;
+    $this->where = $where;
+    $user = $this->R();
+    return $user;
+}
+
+public function update($upval, $where)
+{
+    $this->upval = $upval;
+    $this->where = $where;
+    $rs = $this->U();
+    return $rs;
+}
+
+public function delete($id)
+{
+    $this->id = $id;
+    $rs = $this->D();
+    return $rs;
+}
+
+It's use C() R() U() D() methods extends Model Class
+
+4. effect view
+The browser opens the domain/user page and outputs Hello ZeroPHP FrameWork! [domain refers to your host].
+```
 ---
 
 ## FAQ
+```
+1. Q: How to install?
+   A: composer global require "ankewk/zerophp:dev-master"
+
+2. Q: What are the application scenarios?
+   A: H5 App or min PHP Application...
+```
