@@ -148,6 +148,34 @@ The browser opens the domain/user page and outputs Hello ZeroPHP FrameWork! [dom
 ```
 ---
 
+## Validate Param Demo
+
+1. configuration routing
+The following routing is configured under the conf/route.php file:
+$route['/form'] = ['User', 'form'];
+Find the formZero method under the controller of User to realize business logic.
+
+2. logical writing
+/app/Controller/UserController.php's formZero () method:
+The code is as follows:
+public function formZero ()
+{
+    $param = [
+        'a' => 'string',
+    ];
+    $request = $this->Request();
+    $request->validation($param);
+    $a = $request->getParam('a');
+    var_dump($a);exit;
+}
+
+3. Test
+Under the command line use curl
+GET: curl http://127.0.0.1:9008/form?a=1111
+POST: curl -d "a=1" http://127.0.0.1:9008/form
+
+---
+
 ## FAQ
 ```
 1. Q: How to install?

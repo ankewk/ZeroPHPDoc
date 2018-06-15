@@ -10,11 +10,20 @@ class UserController extends Controller
         parent::__construct();
     }
 
+    public function formZero()
+    {
+        $param = [
+            'a' => 'string',
+        ];
+        $request = $this->Request();
+        $request->validation($param);
+        $a = $request->getParam('a');
+        var_dump($a);exit;
+    }
+
     public function indexZero()
     {
         $userModel = new UserModel();
-
-
         //creat user
         // $user = "'anke','27'";
         // $uid = $userModel->create($user);
