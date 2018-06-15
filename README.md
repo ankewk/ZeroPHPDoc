@@ -149,7 +149,10 @@ The browser opens the domain/user page and outputs Hello ZeroPHP FrameWork! [dom
 ---
 
 ## Validate Param Demo
+Demo Code In app
+In routing: Domain/form page output Param Validate Demo ZeroPHP FrameWork!
 
+```
 1. configuration routing
 The following routing is configured under the conf/route.php file:
 $route['/form'] = ['User', 'form'];
@@ -173,6 +176,7 @@ public function formZero ()
 Under the command line use curl
 GET: curl http://127.0.0.1:9008/form?a=1111
 POST: curl -d "a=1" http://127.0.0.1:9008/form
+```
 
 ---
 
